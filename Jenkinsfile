@@ -1,25 +1,23 @@
 pipeline {
     agent any
-    
+
     stages {
+        stage('Install') {
+            steps {
+                sh 'npm ci'
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
 
         stage('Build') {
             steps {
-                echo 'Building Taskboard...'
+                sh 'npm run build'
             }
         }
-
-        stage('Test') {
-            steps {
-                echo 'Running Tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying to development...'  
-            }
-        }
-          
     }
 }
